@@ -7,7 +7,7 @@ import lombok.Value;
 public class RegistrationUserDto {
     @NotBlank
     private String username;
-
+    
     @NotBlank
     private String rawPassword;
 }

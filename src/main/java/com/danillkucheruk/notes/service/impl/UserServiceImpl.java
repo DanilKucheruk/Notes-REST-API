@@ -13,6 +13,7 @@ import com.danillkucheruk.notes.dto.RegistrationUserDto;
 import com.danillkucheruk.notes.dto.UserDto;
 import com.danillkucheruk.notes.mapper.RegistrationUserMapper;
 import com.danillkucheruk.notes.mapper.UserMapper;
+import com.danillkucheruk.notes.model.User;
 import com.danillkucheruk.notes.repository.UserRepository;
 import com.danillkucheruk.notes.service.UserService;
 
@@ -42,13 +43,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public UserDto create(RegistrationUserDto userDto) {
+    public User create(RegistrationUserDto userDto) {
         return Optional.of(userDto)
                 .map(dto -> {
                     return registrationUserMapper.map(dto);
                 })
                 .map(userRepository::save)
-                .map(userMapper::map)
                 .orElseThrow();
     }
 
@@ -77,5 +77,10 @@ public class UserServiceImpl implements UserService{
             })
             .orElse(false);
 }
+
+    @Override
+    public Optional<User> findByUsername(String name) {
+        return userRepository.findByUsername(name);
+    }
 
 }
