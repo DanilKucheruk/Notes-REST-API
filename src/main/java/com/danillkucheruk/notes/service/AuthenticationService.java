@@ -1,4 +1,6 @@
 package com.danillkucheruk.notes.service;
+import java.util.Collections;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,8 +17,6 @@ import com.danillkucheruk.notes.dto.UserDto;
 import com.danillkucheruk.notes.exceptions.AppError;
 import com.danillkucheruk.notes.model.User;
 import com.danillkucheruk.notes.util.JwtTokenUtils;
-
-import java.util.Collections;
 
 import lombok.RequiredArgsConstructor;
 

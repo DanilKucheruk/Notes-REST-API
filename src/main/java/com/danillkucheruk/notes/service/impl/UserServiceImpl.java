@@ -67,13 +67,9 @@ public class UserServiceImpl implements UserService{
     public boolean delete(Long id) {
     return userRepository.findById(id)
             .map(entity -> {
-                if (entity != null) {
-                    userRepository.delete(entity);
-                    userRepository.flush();
-                    return true;
-                } else {
-                    return false;
-                }
+                userRepository.delete(entity);
+                userRepository.flush();
+                return true;
             })
             .orElse(false);
 }
@@ -82,5 +78,4 @@ public class UserServiceImpl implements UserService{
     public Optional<User> findByUsername(String name) {
         return userRepository.findByUsername(name);
     }
-
 }
