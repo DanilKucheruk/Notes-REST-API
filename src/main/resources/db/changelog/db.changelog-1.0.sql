@@ -22,3 +22,4 @@ CREATE TABLE IF NOT EXISTS notes (
    title varchar(255) not null,
    content varchar(8000) not null
 );
+
