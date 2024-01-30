@@ -14,7 +14,6 @@ import com.danillkucheruk.notes.repository.ListRepository;
 import com.danillkucheruk.notes.repository.NoteRepository;
 import com.danillkucheruk.notes.service.NoteService;
 
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 
 @Service

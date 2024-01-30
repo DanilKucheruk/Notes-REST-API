@@ -54,7 +54,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<UserDto> findAll() {
-        return userRepository.findAll().stream().map(userMapper::map).toList();
+        return userRepository.findAll()
+        .stream()
+        .map(userMapper::map)
+        .toList();
     }
 
     @Override
@@ -77,5 +80,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<User> findByUsername(String name) {
         return userRepository.findByUsername(name);
+    }
+
+    @Override
+    public Optional<UserDto> update(Long id, RegistrationUserDto noteDto) {
+        return userRepository.findById(id)
+            .map(user -> {
+                user.setUsername(noteDto.getUsername());
+                return userRepository.saveAndFlush(user);
+            })
+            .map(userMapper::map);
     }
 }

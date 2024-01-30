@@ -7,7 +7,6 @@ import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
 import com.danillkucheruk.notes.model.ListEntity;
 
-import io.jsonwebtoken.Claims;
 
 public interface ListService {
     

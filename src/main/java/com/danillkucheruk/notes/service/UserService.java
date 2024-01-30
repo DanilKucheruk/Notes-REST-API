@@ -11,9 +11,11 @@ import com.danillkucheruk.notes.model.User;
 
 
 public interface UserService extends UserDetailsService {
+    //for authentication controller
     User create(RegistrationUserDto user);
-    List<UserDto> findAll();
     Optional<UserDto> findById(Long id);
     Optional<User> findByUsername(String name);
+    List<UserDto> findAll();
+    Optional<UserDto> update(Long id, RegistrationUserDto noteDto);
     boolean delete(Long id);
 }
