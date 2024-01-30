@@ -27,10 +27,10 @@ public class NoteServiceImpl implements NoteService {
     private final ListRepository listRepository;
 
     @Override
-    public List<NoteDto> findAll(Claims claims) {
+    public List<NoteDto> findAll(String username) {
         return noteRepository.findAll().
         stream()
-        .filter(note -> note.getList().getUser().getUsername().equals(claims.getSubject()))
+        .filter(note -> note.getList().getUser().getUsername().equals(username))
         .map(noteMapper::map)
         .toList();
     }
@@ -41,14 +41,15 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public Optional<NoteEntity> findById(Long id, Claims claims) {
+    public Optional<NoteEntity> findById(Long id, String username) {
         return noteRepository.findById(id)
-        .filter(note -> note.getList().getUser().getUsername().equals(claims.getSubject()));
+        .filter(note -> note.getList().getUser().getUsername().equals(username));
     }
 
     @Override
-    public boolean delete(Long id, Claims claims) {
+    public boolean delete(Long id,String username) {
         return noteRepository.findById(id)
+        .filter(note -> note.getList().getUser().getUsername().equals(username))
         .map(entity -> {
             noteRepository.delete(entity);
             noteRepository.flush();
@@ -85,8 +86,10 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public Optional<NoteDto> findNoteDtoById(Long id, Claims claims) {
-        return noteRepository.findById(id).map(noteMapper::map);
+    public Optional<NoteDto> findNoteDtoById(Long id, String username) {
+        return noteRepository.findById(id)
+        .filter(note -> note.getList().getUser().getUsername().equals(username))
+        .map(noteMapper::map);
     }
     
 }

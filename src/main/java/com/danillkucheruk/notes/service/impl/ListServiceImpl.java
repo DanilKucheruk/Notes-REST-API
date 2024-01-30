@@ -15,7 +15,6 @@ import com.danillkucheruk.notes.repository.ListRepository;
 import com.danillkucheruk.notes.service.ListService;
 import com.danillkucheruk.notes.service.UserService;
 
-import io.jsonwebtoken.Claims;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -28,27 +27,28 @@ public class ListServiceImpl implements ListService {
     private final UserService userService;
 
     @Override
-    public List<ListDto> findAll(Claims claims){
+    public List<ListDto> findAll(String username){
         return listRepository.findAll().
         stream()
-        .filter(list -> list.getUser().getUsername().equals(claims.getSubject()))
+        .filter(list -> list.getUser().getUsername().equals(username))
         .map(listMapper::map)
         .toList();
     }
 
     @Override
-    public Optional<ListDto> findById(Long id, Claims claims ) {
+    public Optional<ListDto> findById(Long id, String username ) {
         return listRepository.
         findById(id)
-        .filter(list -> list.getUser().getUsername().equals(claims.getSubject()))
+        .filter(list -> list.getUser().getUsername().equals(username))
         .map(listMapper::map);
     }
 
     @Override
     @Transactional
-    public boolean delete(Long id, Claims claims) {
+    public boolean delete(Long id, String username) {
         return listRepository
         .findById(id)
+        .filter(list -> list.getUser().getUsername().equals(username))
         .map(entity -> {
             listRepository.delete(entity);
             listRepository.flush();

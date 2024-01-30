@@ -10,11 +10,11 @@ import com.danillkucheruk.notes.model.NoteEntity;
 import io.jsonwebtoken.Claims;
 
 public interface NoteService {
-    List<NoteDto> findAll(Claims claims);
+    List<NoteDto> findAll( String username);
     List<NoteDto> findAllByListId(Long id);
-    Optional<NoteEntity> findById(Long id, Claims claims);
-    Optional<NoteDto> findNoteDtoById(Long id, Claims claims);
-    boolean delete(Long id, Claims claims);
+    Optional<NoteEntity> findById(Long id, String username);
+    Optional<NoteDto> findNoteDtoById(Long id, String username);
+    boolean delete(Long id, String username);
     NoteDto createNewNote(NoteCreateEditDto noteDto, Long listId);
     Optional<NoteDto> update(Long id, NoteCreateEditDto noteDto);
     

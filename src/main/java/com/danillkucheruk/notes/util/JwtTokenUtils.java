@@ -79,10 +79,4 @@ public class JwtTokenUtils {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
-    public Claims getUsernameFromRequest(HttpServletRequest request){
-        String token = request.getHeader("Authorization").substring("Bearer ".length());
-        Claims claims = extractAllClaims(token);
-        return claims;
-    }
 }
