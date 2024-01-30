@@ -37,14 +37,18 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public Optional<ListDto> findById(Long id) {
-        return listRepository.findById(id).map(listMapper::map);
+    public Optional<ListDto> findById(Long id, Claims claims ) {
+        return listRepository.
+        findById(id)
+        .filter(list -> list.getUser().getUsername().equals(claims.getSubject()))
+        .map(listMapper::map);
     }
 
     @Override
     @Transactional
-    public boolean delete(Long id) {
-        return listRepository.findById(id)
+    public boolean delete(Long id, Claims claims) {
+        return listRepository
+        .findById(id)
         .map(entity -> {
             listRepository.delete(entity);
             listRepository.flush();
@@ -83,7 +87,9 @@ public class ListServiceImpl implements ListService {
                 newList.setTitle(listDto.getTitle());
                 newList.setNotes(list.getNotes());
                 newList.setDescription(listDto.getDescription());
-                return listMapper.map(newList);
-            });
+                return newList;
+            })
+            .map(listRepository::saveAndFlush)
+            .map(listMapper::map);
     }
 }
