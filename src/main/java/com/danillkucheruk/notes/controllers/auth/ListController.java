@@ -14,7 +14,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.util.List;
@@ -31,15 +39,13 @@ public class ListController {
 
     @GetMapping
     public ResponseEntity<List<ListDto>> getAllLists(HttpServletRequest request) {
-        String token = request.getHeader("Authorization").substring("Bearer ".length());
-        Claims claims = jwtTokenUtils.extractAllClaims(token);
+        Claims claims = jwtTokenUtils.getUsernameFromRequest(request);
         return ResponseEntity.ok(listService.findAll(claims));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ListDto> getListById(@PathVariable Long id, HttpServletRequest request) {
-        String token = request.getHeader("Authorization").substring("Bearer ".length());
-        Claims claims = jwtTokenUtils.extractAllClaims(token);
+        Claims claims = jwtTokenUtils.getUsernameFromRequest(request);
         return listService.findById(id, claims)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -47,8 +53,7 @@ public class ListController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteListById(@PathVariable Long id, HttpServletRequest request) {
-        String token = request.getHeader("Authorization").substring("Bearer ".length());
-        Claims claims = jwtTokenUtils.extractAllClaims(token);
+        Claims claims = jwtTokenUtils.getUsernameFromRequest(request);
         if (listService.delete(id, claims)) {
             return ResponseEntity.ok().build();
         } else {
