@@ -50,9 +50,13 @@ public class ListServiceImpl implements ListService {
         .findById(id)
         .filter(list -> list.getUser().getUsername().equals(username))
         .map(entity -> {
-            listRepository.delete(entity);
-            listRepository.flush();
-            return true;
+            if (entity != null) {
+                listRepository.delete(entity);
+                listRepository.flush();
+                return true;
+            } else {
+                return false;
+            }
         })
         .orElse(false);
     }

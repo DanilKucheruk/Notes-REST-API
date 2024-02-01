@@ -50,9 +50,13 @@ public class NoteServiceImpl implements NoteService {
         return noteRepository.findById(id)
         .filter(note -> note.getList().getUser().getUsername().equals(username))
         .map(entity -> {
-            noteRepository.delete(entity);
-            noteRepository.flush();
-            return true;
+            if (entity != null) {
+                noteRepository.delete(entity);
+                noteRepository.flush();
+                return true;
+            } else {
+                return false;
+            }
         }).orElse(false);
     }
 
