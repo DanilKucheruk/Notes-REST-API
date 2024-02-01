@@ -2,11 +2,13 @@ package com.danillkucheruk.notes.dto;
 
 import java.util.List;
 
-import lombok.Setter;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ListDto {
     private Long id;
 

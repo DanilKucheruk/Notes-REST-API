@@ -94,5 +94,4 @@ public class NoteServiceImpl implements NoteService {
         .filter(note -> note.getList().getUser().getUsername().equals(username))
         .map(noteMapper::map);
     }
-    
 }
