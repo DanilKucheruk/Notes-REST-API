@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.controllers.auth;
+package com.danillkucheruk.notes.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

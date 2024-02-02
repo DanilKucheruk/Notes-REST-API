@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.controllers.auth;
+package com.danillkucheruk.notes.controllers;
 
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
