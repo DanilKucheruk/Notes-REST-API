@@ -3,7 +3,7 @@ package com.danillkucheruk.notes.controllers;
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
 import com.danillkucheruk.notes.exceptions.AppError;
-import com.danillkucheruk.notes.service.ListService;
+import com.danillkucheruk.notes.service.impl.ListServiceImpl;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +29,7 @@ import java.util.Optional;
 @RequestMapping("/api/lists")
 @RequiredArgsConstructor
 public class ListController {
-
-    private ListService listService;
+    private final ListServiceImpl listService;
 
     @GetMapping
     public ResponseEntity<List<ListDto>> getAllLists(Principal principal) {
