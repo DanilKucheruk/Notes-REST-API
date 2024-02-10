@@ -41,7 +41,7 @@ public class ListControllerIT extends IntegrationTestBase {
     private ObjectMapper objectMapper;
 
     @Test
-    public void testGetAllListsReturnJsonWith2Elemtns() throws Exception {
+    public void testGetAllLists_ReturnJsonWith2Elemtns() throws Exception {
         mockMvc.perform(get("/api/lists").with(httpBasic("test@gmail.com", "tests")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -67,7 +67,7 @@ public class ListControllerIT extends IntegrationTestBase {
                 .content(objectMapper.writeValueAsString(listDto)))
                 .andExpect(status().isCreated());
 
-        assertTrue(listService.findAll("test@gmail.com").size() > 0);
+        assertTrue(listService.findById(1L, "test@gmail.com").isPresent());
     }
 
     @Test
