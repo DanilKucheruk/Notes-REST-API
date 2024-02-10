@@ -1,6 +1,6 @@
-package com.danillkucheruk.notes.unittests.controllers;
+package com.danillkucheruk.notes.unit.controllers;
 
-import com.danillkucheruk.notes.controllers.NoteController;
+import com.danillkucheruk.notes.controller.NoteController;
 import com.danillkucheruk.notes.dto.NoteCreateEditDto;
 import com.danillkucheruk.notes.dto.NoteDto;
 import com.danillkucheruk.notes.exceptions.AppError;

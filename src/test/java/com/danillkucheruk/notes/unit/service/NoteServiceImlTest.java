@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.unittests.service;
+package com.danillkucheruk.notes.unit.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

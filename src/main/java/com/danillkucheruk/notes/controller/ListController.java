@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.controllers;
+package com.danillkucheruk.notes.controller;
 
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;

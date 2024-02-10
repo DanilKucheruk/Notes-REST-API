@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.unittests.service;
+package com.danillkucheruk.notes.unit.service;
 
 import com.danillkucheruk.notes.dto.RegistrationUserDto;
 import com.danillkucheruk.notes.dto.UserDto;

@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.unittests.controllers;
+package com.danillkucheruk.notes.unit.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.danillkucheruk.notes.controllers.ListController;
+import com.danillkucheruk.notes.controller.ListController;
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
 import com.danillkucheruk.notes.service.ListService;

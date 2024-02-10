@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.unittests.controllers;
+package com.danillkucheruk.notes.unit.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
-import com.danillkucheruk.notes.controllers.auth.AuthenticationController;
+import com.danillkucheruk.notes.controller.auth.AuthenticationController;
 import com.danillkucheruk.notes.dto.AuthenticationRequest;
 import com.danillkucheruk.notes.dto.RegistrationUserDto;
 import com.danillkucheruk.notes.service.AuthenticationService;

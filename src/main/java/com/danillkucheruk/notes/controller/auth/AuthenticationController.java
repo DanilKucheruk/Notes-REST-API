@@ -1,4 +1,4 @@
-package com.danillkucheruk.notes.controllers.auth;
+package com.danillkucheruk.notes.controller.auth;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
