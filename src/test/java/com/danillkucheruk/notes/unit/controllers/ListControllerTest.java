@@ -8,16 +8,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.danillkucheruk.notes.controller.ListController;
-import com.danillkucheruk.notes.controller.NoteController;
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
-import com.danillkucheruk.notes.service.ListService;
-import com.danillkucheruk.notes.service.NoteService;
 import com.danillkucheruk.notes.service.impl.ListServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
