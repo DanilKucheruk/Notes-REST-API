@@ -1,5 +1,6 @@
 package com.danillkucheruk.notes.unit.controllers;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -7,11 +8,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.danillkucheruk.notes.controller.ListController;
+import com.danillkucheruk.notes.controller.NoteController;
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
 import com.danillkucheruk.notes.service.ListService;
+import com.danillkucheruk.notes.service.NoteService;
+import com.danillkucheruk.notes.service.impl.ListServiceImpl;
 
+import lombok.RequiredArgsConstructor;
 
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,13 +38,20 @@ import static org.mockito.Mockito.when;
 import java.security.Principal;
 
 @ExtendWith(MockitoExtension.class)
+@RequiredArgsConstructor
 public class ListControllerTest {
-
-    @Mock
-    private ListService listService;
-
+    
     @InjectMocks
     private ListController listController;  
+
+    @Mock
+    private ListServiceImpl listService;
+
+     @BeforeEach
+    public void setUp() {
+        listService = mock(ListServiceImpl.class);
+        listController = new ListController(listService);
+    }
 
     @Test
     public void getAllLists_ShouldReturnListOfListsDto() {
@@ -61,7 +75,7 @@ public class ListControllerTest {
         // given
         String username = "username";
         Principal principal = new UsernamePasswordAuthenticationToken(username, "password");
-        Long id = 1L;
+        Long id = 2L;
         ListDto expectedList = new ListDto();
         when(listService.findById(eq(id), anyString())).thenReturn(Optional.of(expectedList));
 
@@ -79,7 +93,7 @@ public class ListControllerTest {
         // given
         String username = "username";
         Principal principal = new UsernamePasswordAuthenticationToken(username, "password");
-        Long id = 1L;
+        Long id = 2L;
         when(listService.findById(eq(id), anyString())).thenReturn(Optional.empty());
 
         // when
@@ -96,7 +110,7 @@ public class ListControllerTest {
         // given
         String username = "username";
         Principal principal = new UsernamePasswordAuthenticationToken(username, "password");
-        Long id = 1L;
+        Long id = 2L;
         when(listService.delete(eq(id), anyString())).thenReturn(true);
 
         // when
@@ -112,7 +126,7 @@ public class ListControllerTest {
         // given
         String username = "username";
         Principal principal = new UsernamePasswordAuthenticationToken(username, "password");
-        Long id = 1L;
+        Long id = 2L;
         when(listService.delete(eq(id), anyString())).thenReturn(false);
 
         // when
@@ -144,7 +158,7 @@ public class ListControllerTest {
     @Test
     public void updateList_ExistingId_ShouldReturnUpdatedListDto() {
         // given
-        Long id = 1L;
+        Long id = 2L;
         ListCreateEditDto listDto = new ListCreateEditDto();
         Optional<ListDto> expectedList = Optional.of(new ListDto());
         when(listService.update(eq(id), eq(listDto))).thenReturn(expectedList);
@@ -161,7 +175,7 @@ public class ListControllerTest {
     @Test
     public void updateList_NonExistingId_ShouldReturnBadRequestWithErrorMessage() {
         // given
-        Long id = 1L;
+        Long id = 2L;
         ListCreateEditDto listDto = new ListCreateEditDto();
         when(listService.update(eq(id), eq(listDto))).thenReturn(Optional.empty());
 

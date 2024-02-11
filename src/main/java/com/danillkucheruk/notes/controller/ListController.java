@@ -3,6 +3,7 @@ package com.danillkucheruk.notes.controller;
 import com.danillkucheruk.notes.dto.ListCreateEditDto;
 import com.danillkucheruk.notes.dto.ListDto;
 import com.danillkucheruk.notes.exceptions.AppError;
+import com.danillkucheruk.notes.service.ListService;
 import com.danillkucheruk.notes.service.impl.ListServiceImpl;
 
 import jakarta.validation.Valid;
