@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  client-backend:
+    image: notes:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    depends_on:
+      - postgres
+    environment:
+      - SERVER_PORT= 8085
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/notes_bd
+
+  postgres:
+    image: 'postgres:14.1'
+    ports:
+    - 5432:5432
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=1234'
+      - 'POSTGRES_DB=notes_bd'
+    volumes:
+       - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+        

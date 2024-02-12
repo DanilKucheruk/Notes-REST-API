@@ -2,13 +2,13 @@ server:
     port: 8085
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5432/notes
+        url: jdbc:postgresql://postgres/notes_bd
         username: postgres
         password: 1234
         driver-class-name: org.postgresql.Driver
     liquibase:
         change-log: classpath:db/changelog/db.changelog-master.yml
-        url: jdbc:postgresql://localhost:5432/notes
+        url: jdbc:postgresql://postgres/notes_bd
         user: postgres
         password: 1234
 application:
