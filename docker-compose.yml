@@ -9,7 +9,8 @@ services:
     ports:
       - "8085:8085"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       - SERVER_PORT= 8085
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/notes_bd
@@ -23,5 +24,11 @@ services:
       - 'POSTGRES_PASSWORD=1234'
       - 'POSTGRES_DB=notes_bd'
     volumes:
-       - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
-        
+      - ./infrastructure/db/drop_db.sql:/docker-entrypoint-initdb.d/drop_db.sql
+      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+  

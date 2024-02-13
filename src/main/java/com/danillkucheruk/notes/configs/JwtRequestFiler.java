@@ -10,7 +10,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.danillkucheruk.notes.util.JwtTokenUtils;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;

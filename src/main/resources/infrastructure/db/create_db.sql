@@ -1,1 +1,1 @@
-create database notes_db;
+CREATE DATABASE notes_db;
